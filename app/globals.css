@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 30, 41, 59;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 255, 255, 255;
+  --primary: #0f172a;
+  --primary-foreground: #ffffff;
+  --accent: #3b82f6;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --input-bg: #f8fafc;
+}
+
+[data-theme='dark'] {
+  --foreground-rgb: 248, 250, 252;
+  --background-start-rgb: 3, 7, 18; 
+  --background-end-rgb: 10, 20, 50;   
+  --primary: #f8fafc;
+  --primary-foreground: #0f172a;
+  --accent: #60a5fa;
+  --card-bg: #111827; 
+  --card-border: #1f2937;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --input-bg: #1f2937;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@layer base {
+  body {
+    @apply antialiased selection:bg-blue-100 selection:text-blue-900 transition-colors duration-500;
+    color: var(--text-main);
+    background: linear-gradient(-45deg, 
+      rgba(186, 230, 253, 1), /* Pronounced Blue */
+      rgba(255, 255, 255, 1), 
+      rgba(233, 213, 255, 1), /* Pronounced Purple */
+      rgba(186, 230, 253, 1)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+    min-height: 100vh;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  [data-theme='dark'] body {
+    background: linear-gradient(-45deg, 
+      #030712, 
+      #0a1432, 
+      #0f172a, 
+      #030712
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply transition-colors duration-500;
+    color: var(--text-main);
+  }
+}
+
+@layer components {
+  .compass-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L55 45 L100 50 L55 55 L50 100 L45 55 L0 50 L45 45 Z' fill='%233b82f6' fill-opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  .container-shell {
+    @apply mx-auto max-w-7xl px-6 md:px-12;
+  }
+
+  .card {
+    @apply rounded-[2.5rem] border shadow-sm transition-all duration-500 backdrop-blur-sm;
+    background-color: rgba(var(--card-bg-rgb, 255, 255, 255), 0.7);
+    border-color: var(--card-border);
+  }
+
+  [data-theme='dark'] .card {
+    background-color: rgba(17, 24, 39, 0.7);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-2xl px-6 py-3.5 text-sm font-bold shadow-lg transition-all active:scale-95 disabled:opacity-50;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  
+  .btn-primary:hover {
+    @apply shadow-xl opacity-90;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-2xl border px-6 py-3.5 text-sm font-bold shadow-sm transition-all active:scale-95 disabled:opacity-50;
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--text-main);
+  }
+
+  .btn-secondary:hover {
+    @apply bg-slate-50 dark:bg-slate-800;
+  }
+
+  .input {
+    @apply w-full rounded-2xl border px-5 py-3.5 text-sm shadow-sm transition-all focus:border-blue-400 focus:outline-none focus:ring-4 focus:ring-blue-400/10 placeholder:text-slate-400;
+    background-color: var(--input-bg);
+    border-color: var(--card-border);
+    color: var(--text-main);
+  }
+}
+
+.hero-grid {
+  background-image: 
+    radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.loading-compass {
+  animation: spin-slow 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}

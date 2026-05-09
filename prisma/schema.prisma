@@ -1,0 +1,149 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ExamType {
+  JEE
+  NEET
+  CAT
+}
+
+enum CollegeTrackingStatus {
+  LONG_LIST
+  SHORT_LIST
+  WANT_TO_APPLY
+  APPLIED
+}
+
+model User {
+  id                String            @id @default(cuid())
+  name              String
+  email             String            @unique
+  passwordHash      String
+  bio               String?
+  university        String?
+  academicYear      String?
+  major             String?
+  location          String?
+  profileImage      String?
+  awards            Json?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  savedColleges     SavedCollege[]
+  savedComparisons  SavedComparison[]
+  questions         Question[]
+  answers           Answer[]
+}
+
+model College {
+  id               String            @id @default(cuid())
+  name             String            @unique
+  location         String
+  fees             Int
+  rating           Float
+  overview         String
+  placementRate    Float
+  averageSalaryLpa Float
+  establishedYear  Int
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  courses          Course[]
+  reviews          Review[]
+  placements       Placement[]
+  savedColleges    SavedCollege[]
+  eligibilityRules EligibilityRule[]
+}
+
+model Course {
+  id         String   @id @default(cuid())
+  name       String
+  duration   String
+  seats      Int
+  collegeId  String
+  createdAt  DateTime @default(now())
+  college    College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  student    String
+  rating     Float
+  comment    String
+  collegeId  String
+  createdAt  DateTime @default(now())
+  college    College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+}
+
+model Placement {
+  id              String   @id @default(cuid())
+  year            Int
+  placementRate   Float
+  averageSalaryLpa Float
+  highestSalaryLpa Float
+  collegeId       String
+  createdAt       DateTime @default(now())
+  college         College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+}
+
+model EligibilityRule {
+  id          String   @id @default(cuid())
+  exam        ExamType
+  minRank     Int
+  maxRank     Int
+  collegeId   String
+  createdAt   DateTime @default(now())
+  college     College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@index([exam, minRank, maxRank])
+}
+
+model Question {
+  id         String   @id @default(cuid())
+  title      String
+  body       String
+  userId     String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answers    Answer[]
+}
+
+model Answer {
+  id         String   @id @default(cuid())
+  body       String
+  questionId String
+  userId     String
+  createdAt  DateTime @default(now())
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SavedCollege {
+  id         String   @id @default(cuid())
+  userId     String
+  collegeId  String
+  status     CollegeTrackingStatus @default(LONG_LIST)
+  deadline   DateTime?
+  notes      String?
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  college    College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, collegeId])
+}
+
+model SavedComparison {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  collegeIds  String[]
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
