@@ -57,7 +57,7 @@ export default function QuestionsPage() {
     let list = [...questions];
 
     if (activeTab === "MY_QUESTIONS" && currentUser) {
-      list = list.filter(q => q.userId === currentUser.id);
+      list = list.filter(q => q.user.id === currentUser.id);
     }
 
     if (searchQuery) {
@@ -262,25 +262,25 @@ export default function QuestionsPage() {
 
             {/* Chat Messages */}
             <div className="flex-1 overflow-y-auto bg-[url('https://w0.peakpx.com/wallpaper/580/650/wallpaper-background-whatsapp-light-themes-whatsapp.jpg')] bg-repeat p-6 md:p-10 space-y-6 dark:bg-slate-900 dark:bg-none">
-              <div className={`flex ${selectedQuestion.userId === currentUser?.id ? 'justify-end' : 'justify-start'}`}>
+              <div className={`flex ${selectedQuestion.user.id === currentUser?.id ? 'justify-end' : 'justify-start'}`}>
                 <div className="max-w-[85%] space-y-1">
                   <div className={`rounded-3xl p-5 shadow-sm ${
-                    selectedQuestion.userId === currentUser?.id 
+                    selectedQuestion.user.id === currentUser?.id 
                       ? 'rounded-tr-none bg-blue-600 text-white shadow-blue-200/50 dark:bg-blue-600 dark:shadow-none' 
                       : 'rounded-tl-none bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200'
                   }`}>
                     <p className="text-sm font-bold mb-2">{selectedQuestion.title}</p>
                     <p className="text-sm leading-relaxed font-medium">{selectedQuestion.body}</p>
                     <p className={`mt-2 text-[10px] font-bold uppercase text-right ${
-                      selectedQuestion.userId === currentUser?.id ? 'text-white/70' : 'text-slate-400'
+                      selectedQuestion.user.id === currentUser?.id ? 'text-white/70' : 'text-slate-400'
                     }`}>
                       {new Date(selectedQuestion.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>
                   <p className={`text-[10px] font-bold uppercase tracking-widest px-2 ${
-                    selectedQuestion.userId === currentUser?.id ? 'text-right text-slate-400' : 'text-slate-400'
+                    selectedQuestion.user.id === currentUser?.id ? 'text-right text-slate-400' : 'text-slate-400'
                   }`}>
-                    {selectedQuestion.userId === currentUser?.id ? 'You' : selectedQuestion.user.name}
+                    {selectedQuestion.user.id === currentUser?.id ? 'You' : selectedQuestion.user.name}
                   </p>
                 </div>
               </div>
@@ -294,25 +294,25 @@ export default function QuestionsPage() {
               {selectedQuestion.answers.map((ans) => (
                 <div 
                   key={ans.id} 
-                  className={`flex ${ans.userId === currentUser?.id ? 'justify-end' : 'justify-start'}`}
+                  className={`flex ${ans.user.id === currentUser?.id ? 'justify-end' : 'justify-start'}`}
                 >
                   <div className="max-w-[85%] space-y-1">
                     <div className={`rounded-3xl p-5 shadow-sm ${
-                      ans.userId === currentUser?.id 
+                      ans.user.id === currentUser?.id 
                         ? 'rounded-tr-none bg-blue-600 text-white shadow-blue-200/50 dark:bg-blue-600 dark:shadow-none' 
                         : 'rounded-tl-none bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200'
                     }`}>
                       <p className="text-sm leading-relaxed font-medium">{ans.body}</p>
                       <p className={`mt-2 text-[10px] font-bold uppercase text-right ${
-                        ans.userId === currentUser?.id ? 'text-white/70' : 'text-slate-400'
+                        ans.user.id === currentUser?.id ? 'text-white/70' : 'text-slate-400'
                       }`}>
                         {new Date(ans.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </p>
                     </div>
                     <p className={`text-[10px] font-bold uppercase tracking-widest px-2 ${
-                      ans.userId === currentUser?.id ? 'text-right text-slate-400' : 'text-slate-400'
+                      ans.user.id === currentUser?.id ? 'text-right text-slate-400' : 'text-slate-400'
                     }`}>
-                      {ans.userId === currentUser?.id ? 'You' : ans.user.name}
+                      {ans.user.id === currentUser?.id ? 'You' : ans.user.name}
                     </p>
                   </div>
                 </div>
@@ -325,7 +325,7 @@ export default function QuestionsPage() {
                 <div className="flex-1 relative">
                   <input
                     className="input py-4 rounded-[2rem]"
-                    placeholder={`Reply to ${selectedQuestion.userId === currentUser?.id ? 'discussion' : selectedQuestion.user.name}...`}
+                    placeholder={`Reply to ${selectedQuestion.user.id === currentUser?.id ? 'discussion' : selectedQuestion.user.name}...`}
                     value={answerDraft}
                     onChange={(e) => setAnswerDraft(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && submitAnswer(selectedQuestion.id)}

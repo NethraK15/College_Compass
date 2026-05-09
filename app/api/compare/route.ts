@@ -30,7 +30,8 @@ export async function POST(req: NextRequest) {
         fees: true,
         placementRate: true,
         rating: true,
-        location: true
+        location: true,
+        averageSalaryLpa: true
       }
     });
 

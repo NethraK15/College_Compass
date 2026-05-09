@@ -30,6 +30,7 @@ type ResultItem = {
   placementRate: number;
   rating: number;
   location: string;
+  averageSalaryLpa: number;
 };
 
 const metricTabs = ["fees", "placementRate", "rating", "location"] as const;
@@ -204,6 +205,7 @@ export default function ComparePage() {
             placementRate: number;
             rating: number;
             location: string;
+            averageSalaryLpa: number;
           }>;
         };
       }>("/api/compare", {
