@@ -55,73 +55,68 @@ export default function SignupPage() {
     <main className="container-shell py-10 md:py-14">
       <div className="grid items-stretch gap-8 lg:grid-cols-[0.95fr_1.05fr]">
         <section className="order-2 flex items-center lg:order-1">
-          <AuthCard title="Create account" subtitle="Quick sign up">
-            <form onSubmit={handleSubmit} className="w-full space-y-5">
-            <div className="space-y-2">
-              <p className="text-sm font-medium uppercase tracking-[0.22em] text-cyan-700">Start here</p>
-              <h1 className="text-3xl font-semibold tracking-tight text-slate-900">Create your account</h1>
-              <p className="text-sm text-slate-600">Join CollegeCompass to save colleges, compare options, and build your application shortlist.</p>
-            </div>
+          <AuthCard title="Create account" subtitle="Join CollegeCompass to save colleges, compare options, and build your application shortlist.">
+            <form onSubmit={handleSubmit} className="w-full space-y-6">
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Full name</label>
-              <input
-                className="input"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Aarav Sharma"
-                required
-                minLength={2}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Email</label>
-              <input
-                className="input"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Password</label>
-              <div className="relative">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700">Full name</label>
                 <input
-                  className="input pr-12"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Create a password"
+                  className="input"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Aarav Sharma"
                   required
-                  minLength={8}
+                  minLength={2}
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((value) => !value)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </button>
               </div>
-            </div>
 
-            {error ? (
-              <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div>
-            ) : null}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700">Email</label>
+                <input
+                  className="input"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
 
-            <button className="btn-primary w-full gap-2 py-3" type="submit" disabled={loading}>
-              {loading ? "Creating account..." : "Create Account"}
-              {!loading ? <ArrowRight className="h-4 w-4" /> : null}
-            </button>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700">Password</label>
+                <div className="relative">
+                  <input
+                    className="input pr-12"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Create a password"
+                    required
+                    minLength={8}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((value) => !value)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
+              </div>
 
-              <p className="text-sm text-slate-600">
-                Already registered? <Link href="/login" className="font-medium text-cyan-700 hover:text-cyan-800">Login</Link>
+              {error ? (
+                <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:bg-rose-900/20 dark:border-rose-900 dark:text-rose-400">{error}</div>
+              ) : null}
+
+              <button className="btn-primary w-full gap-2 py-3" type="submit" disabled={loading}>
+                {loading ? "Creating account..." : "Create Account"}
+                {!loading ? <ArrowRight className="h-4 w-4" /> : null}
+              </button>
+
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Already registered? <Link href="/login" className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">Login</Link>
               </p>
             </form>
           </AuthCard>

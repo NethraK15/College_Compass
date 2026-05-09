@@ -65,8 +65,8 @@ export default function Navbar() {
               <Link href="/profile" className="h-12 w-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-all shadow-inner dark:bg-slate-800 dark:text-slate-400">
                 <User className="h-6 w-6" />
               </Link>
-              <button 
-                className="h-12 w-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 hover:text-red-600 hover:border-red-100 hover:bg-red-50 transition-all shadow-sm dark:bg-slate-900 dark:border-slate-800" 
+              <button
+                className="h-12 w-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 hover:text-red-600 hover:border-red-100 hover:bg-red-50 transition-all shadow-sm dark:bg-slate-900 dark:border-slate-800"
                 onClick={handleLogout}
                 title="Logout"
               >
