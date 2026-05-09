@@ -16,12 +16,12 @@ import {
   type CollegeTrackingStatus
 } from "@/lib/college-tracking";
 import { useToastStore } from "@/store/toastStore";
-import { 
-  Calendar, 
-  ChevronRight, 
-  CheckCircle2, 
-  Clock, 
-  Trash2, 
+import {
+  Calendar,
+  ChevronRight,
+  CheckCircle2,
+  Clock,
+  Trash2,
   Edit3,
   CalendarDays,
   FileText,
@@ -98,8 +98,8 @@ export default function SavedPage() {
       await apiRequest("/api/saved-colleges", {
         method: "POST",
         token,
-        body: { 
-          collegeId: editingItem.college.id, 
+        body: {
+          collegeId: editingItem.college.id,
           status: editStatus,
           deadline: editDeadline || null,
           notes: editNotes || null
@@ -195,12 +195,11 @@ export default function SavedPage() {
               <div key={status} className="space-y-4">
                 <div className="flex items-center justify-between px-6">
                   <div className="flex items-center gap-3">
-                    <div className={`h-3 w-3 rounded-full ${
-                      status === 'LONG_LIST' ? 'bg-slate-400' :
+                    <div className={`h-3 w-3 rounded-full ${status === 'LONG_LIST' ? 'bg-slate-400' :
                       status === 'SHORT_LIST' ? 'bg-blue-400' :
-                      status === 'WANT_TO_APPLY' ? 'bg-amber-400' :
-                      'bg-emerald-400'
-                    }`} />
+                        status === 'WANT_TO_APPLY' ? 'bg-amber-400' :
+                          'bg-emerald-400'
+                      }`} />
                     <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest dark:text-white">{collegeTrackingStatusLabels[status]}</h2>
                     <span className="bg-slate-100 px-3 py-1 rounded-full text-[10px] font-black text-slate-500 dark:bg-slate-800 dark:text-slate-400">{grouped[status].length}</span>
                   </div>
@@ -208,18 +207,17 @@ export default function SavedPage() {
 
                 <div className="space-y-2">
                   {grouped[status].map((item) => (
-                    <motion.div 
+                    <motion.div
                       layoutId={item.id}
-                      key={item.id} 
+                      key={item.id}
                       className="group flex items-center gap-4 bg-white border border-slate-100 p-4 rounded-3xl hover:shadow-xl hover:shadow-slate-200/50 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer dark:bg-slate-900 dark:border-slate-800 dark:hover:shadow-none"
                       onClick={() => openEditModal(item)}
                     >
-                      <div className={`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 ${
-                        status === 'APPLIED' ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400' : 'bg-slate-50 text-slate-400 dark:bg-slate-800 dark:text-slate-500'
-                      }`}>
+                      <div className={`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 ${status === 'APPLIED' ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400' : 'bg-slate-50 text-slate-400 dark:bg-slate-800 dark:text-slate-500'
+                        }`}>
                         {status === 'APPLIED' ? <CheckCircle2 className="h-6 w-6" /> : <Building2 className="h-6 w-6" />}
                       </div>
-                      
+
                       <div className="flex-1 min-w-0">
                         <h3 className="font-bold text-slate-900 truncate group-hover:text-blue-600 transition-colors dark:text-white dark:group-hover:text-blue-400">{item.college.name}</h3>
                         <div className="flex items-center gap-3 mt-1">
@@ -239,8 +237,8 @@ export default function SavedPage() {
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           className="h-10 w-10 flex items-center justify-center rounded-xl bg-slate-50 text-slate-400 hover:bg-red-50 hover:text-red-600 transition-all dark:bg-slate-800 dark:text-slate-500 dark:hover:bg-red-900/20"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -253,7 +251,7 @@ export default function SavedPage() {
                       </div>
                     </motion.div>
                   ))}
-                  
+
                   {grouped[status].length === 0 && (
                     <div className="p-8 text-center border-2 border-dashed border-slate-100 rounded-[2rem] bg-slate-50/30">
                       <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Nothing here yet</p>
@@ -297,7 +295,7 @@ export default function SavedPage() {
       <AnimatePresence>
         {editingItem && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-6 backdrop-blur-xl bg-slate-900/40">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -314,7 +312,7 @@ export default function SavedPage() {
                       <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1 dark:text-slate-500">{editingItem.college.location}</p>
                     </div>
                   </div>
-                  <button 
+                  <button
                     onClick={() => setEditingItem(null)}
                     className="h-12 w-12 flex items-center justify-center rounded-full bg-slate-50 text-slate-400 hover:bg-slate-100 hover:text-slate-900 transition-all dark:bg-slate-800 dark:text-slate-500 dark:hover:text-white"
                   >
@@ -330,11 +328,10 @@ export default function SavedPage() {
                         <button
                           key={s}
                           onClick={() => setEditStatus(s)}
-                          className={`px-4 py-3.5 rounded-2xl text-xs font-black uppercase tracking-widest transition-all ${
-                            editStatus === s 
-                              ? "bg-slate-900 text-white shadow-xl scale-[1.02] dark:bg-blue-600" 
-                              : "bg-slate-50 text-slate-400 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-500 dark:hover:bg-slate-700"
-                          }`}
+                          className={`px-4 py-3.5 rounded-2xl text-xs font-black uppercase tracking-widest transition-all ${editStatus === s
+                            ? "bg-slate-900 text-white shadow-xl scale-[1.02] dark:bg-blue-600"
+                            : "bg-slate-50 text-slate-400 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-500 dark:hover:bg-slate-700"
+                            }`}
                         >
                           {collegeTrackingStatusLabels[s]}
                         </button>
@@ -346,7 +343,7 @@ export default function SavedPage() {
                     <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1 flex items-center gap-2 dark:text-blue-400/60">
                       <CalendarDays className="h-3 w-3" /> Application Deadline
                     </label>
-                    <input 
+                    <input
                       type="date"
                       className="w-full h-14 rounded-2xl border-none bg-slate-50 px-6 font-bold text-slate-900 focus:ring-2 focus:ring-blue-600 transition-all dark:bg-slate-800 dark:text-white"
                       value={editDeadline}
@@ -358,7 +355,7 @@ export default function SavedPage() {
                     <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1 flex items-center gap-2 dark:text-blue-400/60">
                       <FileText className="h-3 w-3" /> Personal Notes
                     </label>
-                    <textarea 
+                    <textarea
                       className="w-full min-h-[120px] rounded-3xl border-none bg-slate-50 px-6 py-5 text-sm font-medium focus:ring-2 focus:ring-blue-600 transition-all dark:bg-slate-800 dark:text-white"
                       placeholder="Add reminders about application fees, required docs, or visit dates..."
                       value={editNotes}
@@ -367,13 +364,13 @@ export default function SavedPage() {
                   </div>
 
                   <div className="flex gap-4 pt-4">
-                    <button 
+                    <button
                       onClick={() => setEditingItem(null)}
                       className="flex-1 py-5 rounded-[1.5rem] font-bold text-slate-400 hover:text-slate-600 transition-colors dark:text-slate-500 dark:hover:text-slate-300"
                     >
                       Discard
                     </button>
-                    <button 
+                    <button
                       onClick={updateItem}
                       className="flex-1 py-5 rounded-[1.5rem] bg-slate-900 text-white font-bold shadow-xl hover:bg-slate-800 transition-all active:scale-95 dark:bg-blue-600 dark:hover:bg-blue-700"
                     >

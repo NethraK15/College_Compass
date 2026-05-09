@@ -3,14 +3,14 @@
 
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Scale, 
-  Trophy, 
-  IndianRupee, 
-  Briefcase, 
-  Star, 
-  MapPin, 
-  TrendingUp, 
+import {
+  Scale,
+  Trophy,
+  IndianRupee,
+  Briefcase,
+  Star,
+  MapPin,
+  TrendingUp,
   ChevronDown,
   Info
 } from "lucide-react";
@@ -29,21 +29,21 @@ type College = {
 type Criteria = "fees" | "placementRate" | "rating" | "averageSalaryLpa";
 
 const criteriaMeta: Record<Criteria, { label: string; icon: any; color: string; description: string }> = {
-  fees: { 
-    label: "Fees", 
-    icon: IndianRupee, 
+  fees: {
+    label: "Fees",
+    icon: IndianRupee,
     color: "bg-emerald-500",
     description: "Lower fees are prioritized. The more affordable college wins."
   },
-  placementRate: { 
-    label: "Placement", 
-    icon: Briefcase, 
+  placementRate: {
+    label: "Placement",
+    icon: Briefcase,
     color: "bg-blue-500",
     description: "Higher placement rates are prioritized. The college with better job prospects wins."
   },
-  rating: { 
-    label: "Rating", 
-    icon: Star, 
+  rating: {
+    label: "Rating",
+    icon: Star,
     color: "bg-amber-500",
     description: "Higher student ratings are prioritized. The college with better student satisfaction wins."
   },
@@ -86,7 +86,7 @@ export const WeighingMachine = ({ colleges }: { colleges: College[] }) => {
       <div className="mb-10 text-center">
         <h2 className="text-3xl font-bold text-slate-900 dark:text-white">The Ultimate Showdown</h2>
         <p className="mt-3 text-slate-500 font-medium italic dark:text-slate-400">Select a criteria to see which college weighs down the competition</p>
-        
+
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           {(Object.keys(criteriaMeta) as Criteria[]).map((key) => {
             const Meta = criteriaMeta[key];
@@ -95,11 +95,10 @@ export const WeighingMachine = ({ colleges }: { colleges: College[] }) => {
               <button
                 key={key}
                 onClick={() => setActiveCriteria(key)}
-                className={`flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all ${
-                  activeCriteria === key 
-                    ? "bg-blue-600 text-white shadow-xl shadow-blue-500/20 scale-[1.02]" 
-                    : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-100 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700"
-                }`}
+                className={`flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all ${activeCriteria === key
+                  ? "bg-blue-600 text-white shadow-xl shadow-blue-500/20 scale-[1.02]"
+                  : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-100 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700"
+                  }`}
               >
                 <Icon className="h-4 w-4" />
                 {Meta.label}
@@ -112,56 +111,56 @@ export const WeighingMachine = ({ colleges }: { colleges: College[] }) => {
       <div className="relative flex flex-col items-center py-16">
         <div className="absolute bottom-0 h-4 w-40 rounded-t-full bg-slate-200 dark:bg-slate-800" />
         <div className="absolute bottom-4 h-40 w-5 bg-gradient-to-t from-slate-200 to-slate-100 dark:from-slate-800 dark:to-slate-700" />
-        
-        <motion.div 
+
+        <motion.div
           className="relative z-10 flex h-2.5 w-[90%] max-w-2xl items-center justify-between rounded-full bg-slate-800 dark:bg-blue-600"
           animate={{ rotate: tiltAngle }}
           transition={{ type: "spring", stiffness: 40, damping: 12 }}
         >
           <div className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-slate-700 bg-slate-200 shadow-inner dark:border-blue-700 dark:bg-slate-400" />
-          
+
           {/* Scale 1 */}
           <div className="absolute left-0 top-0 flex -translate-x-1/2 flex-col items-center">
-             <div className="h-20 w-1 bg-slate-300 dark:bg-blue-400/30" />
-             <div className="h-2.5 w-20 rounded-full bg-slate-400 dark:bg-blue-400" />
-             <motion.div 
-                className="mt-4 w-48 rounded-[2rem] border border-slate-100 bg-white p-6 shadow-2xl dark:bg-slate-800 dark:border-slate-700"
-                animate={{ rotate: -tiltAngle }}
-                transition={{ type: "spring", stiffness: 40, damping: 12 }}
-             >
-                <div className="text-center space-y-1">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600">{c1.location}</p>
-                  <p className="font-bold text-slate-900 dark:text-white line-clamp-1">{c1.name}</p>
-                  <div className="pt-3 text-2xl font-bold text-slate-900 dark:text-white">
-                    {activeCriteria === "fees" ? currencyINR(c1.fees) : 
-                     activeCriteria === "placementRate" ? `${c1.placementRate}%` : 
-                     activeCriteria === "rating" ? `${c1.rating.toFixed(1)}` :
-                     `${c1.averageSalaryLpa}L`}
-                  </div>
+            <div className="h-20 w-1 bg-slate-300 dark:bg-blue-400/30" />
+            <div className="h-2.5 w-20 rounded-full bg-slate-400 dark:bg-blue-400" />
+            <motion.div
+              className="mt-4 w-48 rounded-[2rem] border border-slate-100 bg-white p-6 shadow-2xl dark:bg-slate-800 dark:border-slate-700"
+              animate={{ rotate: -tiltAngle }}
+              transition={{ type: "spring", stiffness: 40, damping: 12 }}
+            >
+              <div className="text-center space-y-1">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600">{c1.location}</p>
+                <p className="font-bold text-slate-900 dark:text-white line-clamp-1">{c1.name}</p>
+                <div className="pt-3 text-2xl font-bold text-slate-900 dark:text-white">
+                  {activeCriteria === "fees" ? currencyINR(c1.fees) :
+                    activeCriteria === "placementRate" ? `${c1.placementRate}%` :
+                      activeCriteria === "rating" ? `${c1.rating.toFixed(1)}` :
+                        `${c1.averageSalaryLpa}L`}
                 </div>
-             </motion.div>
+              </div>
+            </motion.div>
           </div>
 
           {/* Scale 2 */}
           <div className="absolute right-0 top-0 flex translate-x-1/2 flex-col items-center">
-             <div className="h-20 w-1 bg-slate-300 dark:bg-blue-400/30" />
-             <div className="h-2.5 w-20 rounded-full bg-slate-400 dark:bg-blue-400" />
-             <motion.div 
-                className="mt-4 w-48 rounded-[2rem] border border-slate-100 bg-white p-6 shadow-2xl dark:bg-slate-800 dark:border-slate-700"
-                animate={{ rotate: -tiltAngle }}
-                transition={{ type: "spring", stiffness: 40, damping: 12 }}
-             >
-                <div className="text-center space-y-1">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600">{c2.location}</p>
-                  <p className="font-bold text-slate-900 dark:text-white line-clamp-1">{c2.name}</p>
-                  <div className="pt-3 text-2xl font-bold text-slate-900 dark:text-white">
-                    {activeCriteria === "fees" ? currencyINR(c2.fees) : 
-                     activeCriteria === "placementRate" ? `${c2.placementRate}%` : 
-                     activeCriteria === "rating" ? `${c2.rating.toFixed(1)}` :
-                     `${c2.averageSalaryLpa}L`}
-                  </div>
+            <div className="h-20 w-1 bg-slate-300 dark:bg-blue-400/30" />
+            <div className="h-2.5 w-20 rounded-full bg-slate-400 dark:bg-blue-400" />
+            <motion.div
+              className="mt-4 w-48 rounded-[2rem] border border-slate-100 bg-white p-6 shadow-2xl dark:bg-slate-800 dark:border-slate-700"
+              animate={{ rotate: -tiltAngle }}
+              transition={{ type: "spring", stiffness: 40, damping: 12 }}
+            >
+              <div className="text-center space-y-1">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600">{c2.location}</p>
+                <p className="font-bold text-slate-900 dark:text-white line-clamp-1">{c2.name}</p>
+                <div className="pt-3 text-2xl font-bold text-slate-900 dark:text-white">
+                  {activeCriteria === "fees" ? currencyINR(c2.fees) :
+                    activeCriteria === "placementRate" ? `${c2.placementRate}%` :
+                      activeCriteria === "rating" ? `${c2.rating.toFixed(1)}` :
+                        `${c2.averageSalaryLpa}L`}
                 </div>
-             </motion.div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
@@ -205,11 +204,10 @@ export const RankingList = ({ colleges }: { colleges: College[] }) => {
               <button
                 key={key}
                 onClick={() => setActiveCriteria(key)}
-                className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold transition-all ${
-                  activeCriteria === key 
-                    ? "bg-blue-600 text-white shadow-xl" 
-                    : "bg-slate-100 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
-                }`}
+                className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold transition-all ${activeCriteria === key
+                  ? "bg-blue-600 text-white shadow-xl"
+                  : "bg-slate-100 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
+                  }`}
               >
                 <Icon className="h-3.5 w-3.5" />
                 {Meta.label}
@@ -229,18 +227,16 @@ export const RankingList = ({ colleges }: { colleges: College[] }) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ delay: index * 0.1 }}
-              className={`relative flex items-center gap-6 rounded-3xl p-5 md:p-6 transition-colors ${
-                index === 0 ? "bg-blue-600 text-white shadow-xl shadow-blue-500/20" : "bg-slate-50 border border-slate-100 dark:bg-slate-900 dark:border-slate-800"
-              }`}
+              className={`relative flex items-center gap-6 rounded-3xl p-5 md:p-6 transition-colors ${index === 0 ? "bg-blue-600 text-white shadow-xl shadow-blue-500/20" : "bg-slate-50 border border-slate-100 dark:bg-slate-900 dark:border-slate-800"
+                }`}
             >
-              <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl font-bold ${
-                index === 0 ? "bg-white text-blue-600 shadow-lg" : 
-                index === 1 ? "bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-400" : 
-                "bg-white text-slate-400 border border-slate-100 dark:bg-slate-800 dark:border-slate-800"
-              }`}>
+              <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl font-bold ${index === 0 ? "bg-white text-blue-600 shadow-lg" :
+                index === 1 ? "bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-400" :
+                  "bg-white text-slate-400 border border-slate-100 dark:bg-slate-800 dark:border-slate-800"
+                }`}>
                 {index + 1}
               </div>
-              
+
               <div className="flex-1 min-w-0">
                 <p className={`text-[10px] font-bold uppercase tracking-widest ${index === 0 ? "text-blue-100" : "text-blue-600"}`}>{college.location}</p>
                 <h3 className="text-xl font-bold truncate">{college.name}</h3>
@@ -249,10 +245,10 @@ export const RankingList = ({ colleges }: { colleges: College[] }) => {
               <div className="text-right">
                 <p className={`text-[10px] font-bold uppercase tracking-widest ${index === 0 ? "text-white/60" : "text-slate-400"}`}>{criteriaMeta[activeCriteria].label}</p>
                 <p className="text-2xl font-bold">
-                   {activeCriteria === "fees" ? currencyINR(college.fees) : 
-                    activeCriteria === "placementRate" ? `${college.placementRate}%` : 
-                    activeCriteria === "rating" ? `${college.rating.toFixed(1)}` :
-                    `${college.averageSalaryLpa}L`}
+                  {activeCriteria === "fees" ? currencyINR(college.fees) :
+                    activeCriteria === "placementRate" ? `${college.placementRate}%` :
+                      activeCriteria === "rating" ? `${college.rating.toFixed(1)}` :
+                        `${college.averageSalaryLpa}L`}
                 </p>
               </div>
 
@@ -267,11 +263,11 @@ export const RankingList = ({ colleges }: { colleges: College[] }) => {
           ))}
         </AnimatePresence>
       </div>
-      
+
       <div className="mt-10 rounded-[2rem] bg-blue-50 text-blue-600 p-6 flex gap-4 dark:bg-blue-900/10 dark:text-blue-400 border border-blue-100 dark:border-blue-900/20">
         <Info className="h-6 w-6 shrink-0 mt-0.5" />
         <p className="text-sm font-medium leading-relaxed">
-          The rankings are calculated dynamically based on the <strong>{criteriaMeta[activeCriteria].label}</strong> signal. 
+          The rankings are calculated dynamically based on the <strong>{criteriaMeta[activeCriteria].label}</strong> signal.
           {activeCriteria === "fees" ? " Lower fees are prioritized for financial accessibility." : " Higher values indicate stronger performance in this category."}
         </p>
       </div>
@@ -325,9 +321,9 @@ export const ComparisonTable = ({ colleges }: { colleges: College[] }) => {
                   <div className="flex items-center gap-4">
                     <span className="font-bold text-slate-900 dark:text-white min-w-[3rem]">{college.placementRate}%</span>
                     <div className="h-2 w-32 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
-                      <div 
-                        className="h-full bg-blue-600 rounded-full shadow-glow" 
-                        style={{ width: `${college.placementRate}%` }} 
+                      <div
+                        className="h-full bg-blue-600 rounded-full shadow-glow"
+                        style={{ width: `${college.placementRate}%` }}
                       />
                     </div>
                   </div>
