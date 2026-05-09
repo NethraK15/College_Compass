@@ -51,7 +51,7 @@ export default function QuestionsPage() {
     refetchInterval: 10000, 
   });
 
-  const questions = data?.data || [];
+  const questions = useMemo(() => data?.data || [], [data?.data]);
 
   const filteredQuestions = useMemo(() => {
     let list = [...questions];

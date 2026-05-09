@@ -219,7 +219,7 @@ export default function PredictorPage() {
                     </button>
                   ))}
                   {filteredSubjects.length === 0 && (
-                    <p className="text-[10px] font-bold text-slate-400 py-4 px-2 italic">No subjects found matching "{subjectSearch}"</p>
+                    <p className="text-[10px] font-bold text-slate-400 py-4 px-2 italic">No subjects found matching &quot;{subjectSearch}&quot;</p>
                   )}
                 </div>
               </div>
@@ -316,7 +316,7 @@ export default function PredictorPage() {
             <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 dark:text-blue-400/60">Important Note</h3>
             <div className="flex gap-4 items-start text-slate-600 dark:text-slate-400">
               <AlertCircle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
-              <p className="text-xs leading-6 font-medium">Prediction probabilities are calculated based on last year's Round 1 to Round 6 data. Actual seat allotment depends on the current year's choice filling and category reservations.</p>
+              <p className="text-xs leading-6 font-medium">Prediction probabilities are calculated based on last year&apos;s Round 1 to Round 6 data. Actual seat allotment depends on the current year&apos;s choice filling and category reservations.</p>
             </div>
           </div>
         </aside>

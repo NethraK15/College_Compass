@@ -56,7 +56,7 @@ export default function ProfilePage() {
     return (
       <main className="container-shell py-12">
         <div className="card p-8 text-center">
-          <h2 className="text-xl font-semibold">You're not logged in</h2>
+          <h2 className="text-xl font-semibold">You&apos;re not logged in</h2>
           <p className="mt-2 text-sm text-slate-600">Please login to see your profile details.</p>
         </div>
       </main>

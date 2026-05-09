@@ -264,7 +264,7 @@ export default function CollegeDetailPage({ params }: Props) {
                         <span className="font-bold text-sm">{review.rating.toFixed(1)}</span>
                       </div>
                     </div>
-                    <p className="text-slate-600 font-medium italic leading-relaxed text-sm dark:text-slate-400">"{review.comment}"</p>
+                    <p className="text-slate-600 font-medium italic leading-relaxed text-sm dark:text-slate-400">&quot;{review.comment}&quot;</p>
                   </div>
                 ))}
               </div>

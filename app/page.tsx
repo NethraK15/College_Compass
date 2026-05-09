@@ -109,7 +109,7 @@ export default function HomePage() {
               <Sparkles className="h-4 w-4" /> Your Academic Compass
             </div>
             <p className="text-xl font-bold text-slate-400 dark:text-blue-400/60 animate-in fade-in slide-in-from-left duration-700">
-              Hello <span className="text-slate-900 dark:text-white">{displayName}</span>, let's dive in
+              Hello <span className="text-slate-900 dark:text-white">{displayName}</span>, let&apos;s dive in
             </p>
           </div>
           
